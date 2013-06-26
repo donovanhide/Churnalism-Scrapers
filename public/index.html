@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>Scraper</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.2.1/lodash.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css">
+<script src="soma-template.min.js"></script>
+<style type="text/css" media="screen">
+    #sections{
+        width:100%;
+    }
+</style>
+<script type="text/javascript">
+    $(function() {
+        var template = soma.template.create($('#main').get(0));
+        var details = soma.template.create($('#details').get(0));
+        var stats = new EventSource("/statistics");
+        var data={};
+        template.scope.statuses=["Ignored","Visited","Excluded","Extracted","Not Found","Error"];
+        template.scope.getSections=function(stat,status){
+            return _.size(stat[status]);
+        }
+        template.scope.getPages=function(stat,status){
+            return _.reduce(stat[status],function(sum,v){
+                return sum+_.size(v);
+            },0);
+        }
+        template.render();
+        $('body').on('click','.section,.page',function(){
+            details.scope.host=$(this).data('host');
+            details.scope.status=$(this).data('status');
+            details.scope.sections=data[details.scope.host][details.scope.status];
+            details.scope.pages=_.values(details.scope.sections);
+            console.log(details.scope.pages);
+            details.scope.size=function(array){
+                return _.size(array);
+            }
+            details.render();
+            $('#details').css({
+                'width': 'auto',
+                'margin-left': function () {
+                    return -($(this).width() / 2);
+                }
+            }).show();
+        })
+        stats.addEventListener("summary",function(evt){
+            data=JSON.parse(evt.data)
+            template.scope.summary=data;
+            template.render();
+        },false);
+        stats.onerror=function(e){
+            console.log(e);
+        };
+    })
+</script>
+</head>
+<body>
+    <div id="main">
+        <table class="table table-bordered table-condensed span6">
+            <thead>
+                <tr>
+                    <th rowspan="2" colspan="2">Host</th>
+                    <th data-repeat="status in statuses" colspan="2">{{status}}</th>
+                </tr>
+            </thead>
+            <tbody data-repeat="stat in summary">
+                <tr>
+                    <th rowspan="2">{{$key}}</th>
+                    <th>Sections</th>
+                    <td data-repeat="status in statuses" colspan="2">
+                        <a class="btn btn-mini btn-block section" href="#" data-host="{{$key}}" data-status="{{status}}" data-toggle="modal" data-target="#details">{{getSections(stat,status)}}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Pages</th>
+                    <td data-repeat="status in statuses" colspan="2" data-host="{{$key}}" data-status="{{status}}">
+                        <a class="btn btn-mini btn-block page" href="#" data-host="{{$key}}" data-status="{{status}}"  data-toggle="modal" data-target="#details">{{getPages(stat,status)}}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="details" class="modal hide" tabindex="-1">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>{{status}} sections for {{host}}</h3>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <th>URL</th>
+                        <th>Count</th>
+                    </thead>
+                    <tbody>
+                        <tr data-repeat="section in sections">
+                            <td><a href="http://{{host}}{{$key}}" target="_blank">{{$key}}</a></td>
+                            <td>{{size(section)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <th>Section</th>
+                        <th>Page</th>
+                    </thead>
+                    <tbody>
+                        <tr data-repeat="page in pages">
+                            <td><a href="http://{{host}}{{page}}" target="_blank">{{page}}</a></td>
+                        </tr>
+                    </tbody>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

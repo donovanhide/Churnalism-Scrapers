@@ -1,0 +1,130 @@
+[
+	{
+		"Doctype":  1,
+		"Title":	"Tesco",
+		"Category":	"Supermarket",
+		"Seed":		"http://www.tescoplc.com",
+		"Visit":	"http://tescoplc.com(.*)?$",
+		"Extract":	"http://tescoplc.com(.*newsid=.*)$"
+	},
+	{
+		"Doctype":  2,
+		"Title":	"Asda",
+		"Category":	"Supermarket",
+		"Seed":		"http://your.asda.com/press-centre",
+		"Visit":	"http://your.asda.com/press-centre(.*)?$",
+		"Extract":	"http://your.asda.com/press-centre(.*)?$"
+	},
+	{
+		"Doctype":  3,		
+		"Title": 	"Waitrose",
+		"Category":	"Supermarket",		
+		"Seed": 	"http://www.waitrose.presscentre.com/",
+		"Visit": 	"http://www.waitrose.presscentre.com/(.*)?$",
+		"Extract": 	"http://www.waitrose.presscentre.com/Press-Releases/(.*)$"
+	},
+	{
+		"Doctype":  4,
+		"Title":	"Marks and Spencer",
+		"Category":	"Supermarket",
+		"Seed": 	"http://corporate.marksandspencer.com/media/press_releases",
+		"Vists": 	"http://corporate.marksandspencer.com/(.*)?$",
+		"Extract": 	"http://corporate.marksandspencer.com/page.aspx?pointerid=(.*)?$"
+	},
+	{
+		"Doctype":  5,
+		"Title":	"Sainsburys",
+		"Category":	"Supermarket",
+		"Seed":		"http://www.j-sainsbury.co.uk/media/",
+		"Vists": 	"http://www.j-sainsbury.co.uk/media/(.*)$",
+		"Extract": 	"http://www.j-sainsbury.co.uk/media/(.*)$"	
+	},
+	{
+		"Doctype":  6,
+		"Title":	"Morrisons",
+		"Category":	"Supermarket",		
+		"Seed":		"http://www.morrisons-corporate.com/Media-centre/",
+		"Vists": 	"http://www.morrisons-corporate.com/Media-centre/(.*)$",
+		"Extract": 	"http://www.morrisons-corporate.com/Media-centre/(.*)$"	
+	},
+	{
+		"Doctype":  7,
+		"Title":	"Co-operative",
+		"Category":	"Supermarket",
+		"Seed":		"http://www.co-operative.coop/corporate/Press/Press-releases",
+		"Vists": 	"http://www.co-operative.coop/corporate/Press/Press-releases(.*)$",
+		"Extract": 	"http://www.co-operative.coop/corporate/Press/Press-releases(.*)$"	
+	},
+	{
+		"Doctype":  10,
+		"Title":	"Barclays",
+		"Category":	"Bank",
+		"Seed":		"http://www.newsroom.barclays.com/",
+		"Visit":	"http://www.newsroom.barclays.com/(.*)$",
+		"Extract":	"http://www.newsroom.barclays.com/Press-releases/(.*)$"
+	},
+	{
+		"Doctype":  11,
+		"Title":	"RBS",
+		"Category":	"Bank",		
+		"Seed":		"http://www.rbs.com/news.html",
+		"Visit":	"http://www.rbs.com/news/(.*)$",
+		"Extract":	"http://www.rbs.com/news/(.*)$"
+	},
+	{
+		"Doctype":  12,
+		"Title":	"Lloyds Banking Group",
+		"Category":	"Bank",
+		"Seed":		"http://www.lloydsbankinggroup.com/media.asp",
+		"Visit":	"http://www.lloydsbankinggroup.com/media1/press_releases(.*)$",
+		"Extract":	"http://www.lloydsbankinggroup.com/media1/press_releases(.*)$"
+	},
+	{
+		"Doctype":  13,
+		"Title":	"Virgin Money",
+		"Category":	"Bank",
+		"Seed":		"http://uk.virginmoney.com/virgin/news-centre/",
+		"Visit":	"http://uk.virginmoney.com/virgin/news-centre/(.*)$",
+		"Extract":	"http://uk.virginmoney.com/virgin/news-centre/(.*)$"
+	},
+	{
+		"Doctype":  20,
+		"Title":	"Premier Inn",
+		"Category":	"Hotels",
+		"Seed":		"http://www.premierinn.com/en/news.html",
+		"Visit":	"http://premierinn.com/en/news(.*)$",
+		"Extract":	"http://premierinn.com/en/news(.*)$"
+	},
+	{
+		"Doctype":  21,
+		"Title":	"Travel Lodge",
+		"Category":	"Hotels",
+		"Seed":		"http://www.travelodge.co.uk/news/",
+		"Visit":	"http://travelodge.co.uk/news(.*)$",
+		"Extract":	"http://travelodge.co.uk/news(.*)$"
+	},
+	{
+		"Doctype":  25,
+		"Title":	"Tate Gallery",
+		"Category":	"Culture",
+		"Seed":		"http://www.tate.org.uk/about/press-office",
+		"Visit":	"http://tate.org.uk/about/press-office(.*)$",
+		"Extract":	"http://tate.org.uk/about/press-office/press-releases(.*)$"
+	},
+	{
+		"Doctype":  26,
+		"Title":	"BBC",
+		"Category":	"Culture",
+		"Seed":		"http://www.bbc.co.uk/mediacentre/",
+		"Visit":	"http://bbc.co.uk/mediacentre/(.*)$",
+		"Extract":	"http://bbc.co.uk/mediacentre/(.*)$$"
+	},
+	{
+		"Doctype":	30,
+		"Title":	"72 point",
+		"Category":	"Surveys",
+		"Seed":		"http://www.72point.com/coverage/",
+		"Visit":	"http://72point.com/coverage(.*)$",
+		"Extract":	"http://72point.com/coverage(.*)$"
+	}
+]
